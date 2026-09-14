@@ -1,0 +1,160 @@
+---
+import Base from '../layouts/Base.astro';
+import PhotoGallery from '../components/PhotoGallery.astro';
+import Lightbox from '../components/Lightbox.astro';
+import { getCollection } from 'astro:content';
+import photosData from '../content/photos/index.json';
+
+const allExperiments = await getCollection('experiments');
+
+const experiments = allExperiments
+  .filter(e => e.data.type === 'experiment')
+  .sort((a, b) => b.data.date.localeCompare(a.data.date));
+
+const talks = allExperiments
+  .filter(e => e.data.type === 'talk')
+  .sort((a, b) => b.data.date.localeCompare(a.data.date));
+
+const hasPhotos = photosData.length > 0;
+---
+
+<Base title="Studio" description="Photography, experiments, and talks.">
+  <div class="studio">
+
+    <section class="section" aria-label="Photography">
+      <h1 class="section-heading">Photography</h1>
+      {hasPhotos ? (
+        <>
+          <PhotoGallery photos={photosData} />
+          <Lightbox />
+        </>
+      ) : (
+        <p class="empty-state">Photos coming soon.</p>
+      )}
+    </section>
+
+    <section class="section" aria-label="Experiments">
+      <h2 class="section-heading">Experiments</h2>
+      {experiments.length > 0 ? (
+        <ol class="item-list" role="list">
+          {experiments.map(e => (
+            <li class="item">
+              <div class="item-main">
+                <span class="item-title">
+                  {e.data.url
+                    ? <a href={e.data.url} target="_blank" rel="noopener noreferrer">{e.data.title} →</a>
+                    : e.data.title
+                  }
+                </span>
+                <span class="item-desc">{e.data.description}</span>
+              </div>
+              <span class="item-date">{e.data.date}</span>
+            </li>
+          ))}
+        </ol>
+      ) : (
+        <p class="empty-state">Experiments coming soon.</p>
+      )}
+    </section>
+
+    <section class="section" aria-label="Talks and demos">
+      <h2 class="section-heading">Talks & Demos</h2>
+      {talks.length > 0 ? (
+        <ol class="item-list" role="list">
+          {talks.map(t => (
+            <li class="item">
+              <div class="item-main">
+                <span class="item-title">
+                  {t.data.url
+                    ? <a href={t.data.url} target="_blank" rel="noopener noreferrer">{t.data.title} →</a>
+                    : t.data.title
+                  }
+                </span>
+                <span class="item-desc">{t.data.description}</span>
+              </div>
+              <span class="item-date">{t.data.date}</span>
+            </li>
+          ))}
+        </ol>
+      ) : (
+        <p class="empty-state">Talks and demos coming soon.</p>
+      )}
+    </section>
+
+  </div>
+</Base>
+
+<style>
+  .studio {
+    padding: 100px 48px 80px;
+  }
+
+  .section {
+    margin-bottom: 96px;
+  }
+
+  .section-heading {
+    font-size: clamp(28px, 4vw, 44px);
+    letter-spacing: -0.03em;
+    color: var(--text);
+    margin-bottom: 32px;
+  }
+
+  .empty-state {
+    font-family: var(--font-mono);
+    font-size: 10px; letter-spacing: 2px; text-transform: uppercase;
+    color: var(--text-dim);
+    padding: 48px 0;
+    border-top: 1px solid var(--border);
+  }
+
+  .item-list {
+    list-style: none;
+    display: flex; flex-direction: column; gap: 0;
+  }
+
+  .item {
+    display: flex; justify-content: space-between; align-items: flex-start;
+    gap: 24px;
+    padding: 18px 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .item:first-child { border-top: 1px solid var(--border); }
+
+  .item-main {
+    display: flex; flex-direction: column; gap: 4px;
+    flex: 1;
+  }
+
+  .item-title {
+    font-family: var(--font-display);
+    font-size: 15px; font-weight: 800;
+    color: var(--text);
+  }
+
+  .item-title a {
+    color: var(--text); text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .item-title a:hover { color: var(--accent); }
+
+  .item-desc {
+    font-family: var(--font-body);
+    font-size: 12px; font-weight: 300;
+    color: var(--text-dim); line-height: 1.5;
+  }
+
+  .item-date {
+    font-family: var(--font-mono);
+    font-size: 9px; letter-spacing: 1px; text-transform: uppercase;
+    color: var(--text-dim); white-space: nowrap;
+    padding-top: 3px;
+  }
+
+  @media (max-width: 640px) {
+    .studio { padding: 80px 20px 60px; }
+    .item { flex-direction: column; gap: 8px; }
+  }
+</style>

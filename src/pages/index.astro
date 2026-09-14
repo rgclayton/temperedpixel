@@ -1,0 +1,21 @@
+---
+import Base from '../layouts/Base.astro';
+import Hero from '../components/Hero.astro';
+import ProjectGrid from '../components/ProjectGrid.astro';
+
+// Add your curated hero photos here once they're in public/photos/
+// Each photo should be: dark tones, interesting texture, negative space left side
+const heroPhotos = [
+  { src: '/photos/claytonkoa-sunset2.jpg', alt: 'Claytonkoa sunset' },
+  { src: '/photos/deer.jpg', alt: 'Deer on hill' },
+  { src: '/photos/nyc-bw.jpg', alt: 'NYC black and white' },
+  { src: '/photos/rgc-graphic-illustartion.jpg', alt: 'Artist illustartion' },
+  { src: '/photos/cool-beck.jpg', alt: 'Abstract image' },
+  { src: '/photos/firepit-artsy.jpg', alt: 'Fancy fire' },
+];
+---
+
+<Base title="Work">
+  <Hero photos={heroPhotos} />
+  <ProjectGrid />
+</Base>

@@ -1,0 +1,99 @@
+---
+import { getCollection } from 'astro:content';
+import ProjectCard from './ProjectCard.astro';
+
+const allProjects = await getCollection('projects');
+const sorted = allProjects.sort((a, b) => a.data.order - b.data.order);
+
+const featured = sorted.find(p => p.data.featured) ?? sorted[0];
+// Placeholder ("coming soon") entries stay reachable by URL but never take
+// a grid slot — otherwise identical placeholder cards crowd out real work.
+const rest = sorted.filter(p => p !== featured && !p.data.placeholder);
+
+// Top row: [featured (2fr)] [rest[0] (1fr)]
+// Bottom row: rest[1...] (1fr each, wraps to additional rows automatically)
+const topRight  = rest[0];
+const bottomRow = rest.slice(1);
+---
+
+<section id="work" class="grid-section" aria-label="Selected work">
+  <p class="section-label">Selected work</p>
+
+  <div class="grid-top">
+    <ProjectCard
+      slug={featured.id}
+      title={featured.data.title}
+      type={featured.data.type}
+      summary={featured.data.summary}
+      tags={featured.data.tags}
+      placeholder={featured.data.placeholder}
+      featured={true}
+    />
+    {topRight && (
+      <ProjectCard
+        slug={topRight.id}
+        title={topRight.data.title}
+        type={topRight.data.type}
+        summary={topRight.data.summary}
+        tags={topRight.data.tags}
+        placeholder={topRight.data.placeholder}
+      />
+    )}
+  </div>
+
+  <div class="grid-bottom">
+    {bottomRow.map(project => (
+      <ProjectCard
+        slug={project.id}
+        title={project.data.title}
+        type={project.data.type}
+        summary={project.data.summary}
+        tags={project.data.tags}
+        placeholder={project.data.placeholder}
+      />
+    ))}
+  </div>
+</section>
+
+<style>
+  .grid-section {
+    padding: 64px 48px 80px;
+    max-width: calc(860px + 96px);
+    margin: 0 auto;
+  }
+
+  .section-label {
+    font-family: var(--font-mono);
+    font-size: 9px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 20px;
+  }
+
+  .grid-top {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 6px;
+    margin-bottom: 6px;
+  }
+
+  .grid-bottom {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 6px;
+  }
+
+  /* Tablet */
+  @media (max-width: 1024px) {
+    .grid-section { padding: 48px 32px 64px; }
+    .grid-bottom { grid-template-columns: 1fr 1fr; }
+  }
+
+  /* Mobile */
+  @media (max-width: 640px) {
+    .grid-section { padding: 40px 20px 56px; }
+    .grid-top    { grid-template-columns: 1fr; }
+    .grid-bottom { grid-template-columns: 1fr; }
+  }
+</style>

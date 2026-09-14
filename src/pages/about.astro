@@ -1,0 +1,192 @@
+---
+import Base from '../layouts/Base.astro';
+---
+
+<Base title="About" description="Senior Front-End Engineer and design lead — Ryan Clayton.">
+  <div class="about">
+
+    <header class="about-header">
+      <p class="eyebrow">About</p>
+      <h1>Ryan Clayton</h1>
+    </header>
+
+    <section class="bio" aria-label="Biography">
+      <p>
+        I'm a senior front-end engineer at Adobe, where I've spent the past several years
+        building the platform that powers adobe.com. My work spans component engineering,
+        design systems, developer tooling, and the authoring infrastructure that thousands
+        of Adobe's content creators use every day. Most recently, I've led front-end for a
+        specific slice of Adobe.com's Site Redesign — shipping the section and animation
+        systems it runs on, and building the internal tools the production team uses to
+        author that motion themselves.
+      </p>
+      <p>
+        Before Adobe I worked as a design lead — which means I come to engineering
+        problems with a designer's eye and to design problems with an engineer's
+        understanding of constraints. That combination shows up in everything I build.
+      </p>
+    </section>
+
+    <aside class="translator-callout" aria-label="A unique skill">
+      <p class="callout-label">A unique skill</p>
+      <p class="callout-body">
+        One of the rarest things in a large engineering organisation is someone who can
+        take genuinely complex platform work and make it understandable to the people
+        who aren't engineers. I've built that reputation at Adobe — through written
+        documentation, bi-weekly live demos for the authoring community, and direct
+        engagement with non-technical stakeholders.
+      </p>
+    </aside>
+
+    <section class="timeline" aria-label="Career history">
+      <h2>Experience</h2>
+      <ol class="timeline-list" role="list">
+        <li class="timeline-item">
+          <span class="timeline-year">2018 – present</span>
+          <div>
+            <p class="timeline-role">Senior Front-End Engineer</p>
+            <p class="timeline-company">Adobe</p>
+          </div>
+        </li>
+        <li class="timeline-item">
+          <span class="timeline-year">2013 – 2018</span>
+          <div>
+            <p class="timeline-role">Design Lead/Front-End Developer</p>
+            <p class="timeline-company">Zaact Consulting</p>
+          </div>
+        </li>
+      </ol>
+    </section>
+
+    <section class="contact" aria-label="Contact">
+      <h2>Get in touch</h2>
+      <div class="contact-links">
+        <a href="https://github.com/rgclayton" target="_blank" rel="noopener noreferrer" class="contact-link">
+          GitHub →
+        </a>
+        <a href="https://www.linkedin.com/in/ryan-c-7613892" target="_blank" rel="noopener noreferrer" class="contact-link">
+          LinkedIn →
+        </a>
+        <a href="#" id="email-link" class="contact-link">
+          Email →
+        </a>
+      </div>
+    </section>
+
+  </div>
+</Base>
+
+<script>
+  // The address below isn't written in a form that matches a plain-text
+  // scraper's pattern — it's assembled into a real mailto: href at runtime.
+  document.addEventListener('astro:page-load', () => {
+    const emailLink = document.getElementById('email-link') as HTMLAnchorElement | null;
+    if (!emailLink) return;
+    const reversed = 'moc.liamg@lexipderepmet';
+    emailLink.href = `mailto:${reversed.split('').reverse().join('')}`;
+  });
+</script>
+
+<style>
+  .about {
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 120px 48px 80px;
+  }
+
+  .about-header { margin-bottom: 48px; }
+
+  .eyebrow {
+    font-family: var(--font-mono);
+    font-size: 9px; letter-spacing: 3px; text-transform: uppercase;
+    color: var(--accent); margin-bottom: 12px;
+  }
+
+  h1 {
+    font-size: clamp(36px, 5vw, 56px);
+    letter-spacing: -0.03em;
+    color: var(--text);
+  }
+
+  .bio { margin-bottom: 48px; }
+
+  .bio p {
+    font-family: var(--font-body);
+    font-size: 15px; font-weight: 300;
+    color: var(--text-muted); line-height: 1.75;
+    margin-bottom: 20px;
+  }
+
+  .translator-callout {
+    border-left: 3px solid var(--accent);
+    background: var(--bg-card);
+    border-radius: 0 4px 4px 0;
+    padding: 20px 24px;
+    margin-bottom: 64px;
+  }
+
+  .callout-label {
+    font-family: var(--font-mono);
+    font-size: 8px; letter-spacing: 2px; text-transform: uppercase;
+    color: var(--accent); margin-bottom: 10px;
+  }
+
+  .callout-body {
+    font-family: var(--font-body);
+    font-size: 14px; font-weight: 300;
+    color: var(--text-muted); line-height: 1.75;
+  }
+
+  .timeline h2, .contact h2 {
+    font-size: 13px; letter-spacing: -0.01em;
+    color: var(--text); margin-bottom: 28px;
+  }
+
+  .timeline-list {
+    list-style: none;
+    display: flex; flex-direction: column; gap: 24px;
+    margin-bottom: 64px;
+  }
+
+  .timeline-item {
+    display: flex; gap: 24px; align-items: flex-start;
+  }
+
+  .timeline-year {
+    font-family: var(--font-mono);
+    font-size: 9px; letter-spacing: 1px; text-transform: uppercase;
+    color: var(--text-dim); white-space: nowrap;
+    padding-top: 3px; min-width: 96px;
+  }
+
+  .timeline-role {
+    font-family: var(--font-display);
+    font-size: 15px; font-weight: 800;
+    color: var(--text); margin-bottom: 2px;
+  }
+
+  .timeline-company {
+    font-family: var(--font-body);
+    font-size: 12px; font-weight: 300;
+    color: var(--text-dim);
+  }
+
+  .contact h2 { margin-bottom: 20px; }
+
+  .contact-links { display: flex; gap: 24px; }
+
+  .contact-link {
+    font-family: var(--font-mono);
+    font-size: 10px; letter-spacing: 2px; text-transform: uppercase;
+    color: var(--accent); text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .contact-link:hover { color: var(--text); }
+
+  @media (max-width: 640px) {
+    .about { padding: 100px 20px 60px; }
+    .timeline-item { flex-direction: column; gap: 4px; }
+    .timeline-year { min-width: unset; }
+  }
+</style>

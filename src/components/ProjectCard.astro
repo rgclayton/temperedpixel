@@ -1,0 +1,156 @@
+---
+interface Props {
+  slug: string;
+  title: string;
+  type: 'engineering' | 'design';
+  summary: string;
+  tags: string[];
+  placeholder?: boolean;
+  featured?: boolean;
+}
+
+const {
+  slug,
+  title,
+  type,
+  summary,
+  tags,
+  placeholder = false,
+  featured = false,
+} = Astro.props;
+---
+
+<a
+  href={placeholder ? undefined : `/work/${slug}`}
+  class:list={['card', { featured, placeholder }]}
+  aria-label={placeholder ? `${title} — coming soon` : `View ${title} project`}
+  tabindex={placeholder ? -1 : 0}
+  style={`view-transition-name: card-${slug}`}
+>
+  <div class="card-inner">
+    <p class="card-type">{type === 'engineering' ? 'Engineering' : 'Design'}{placeholder ? ' · Coming soon' : ''}</p>
+    <h2 class="card-title" style={`view-transition-name: title-${slug}`}>{title}</h2>
+    <p class="card-desc">{summary}</p>
+    {tags.length > 0 && (
+      <ul class="tags" role="list">
+        {tags.map(tag => <li class="tag">{tag}</li>)}
+      </ul>
+    )}
+  </div>
+  {!placeholder && <span class="arrow" aria-hidden="true">→</span>}
+</a>
+
+<style>
+  .card {
+    display: block;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 22px;
+    text-decoration: none;
+    transition: border-color 0.2s, background 0.2s;
+    position: relative;
+    cursor: pointer;
+  }
+
+  .card:not(.placeholder):hover {
+    border-color: rgba(162, 89, 255, 0.4);
+    background: var(--bg-card-hover);
+  }
+
+  .card:not(.placeholder):hover .arrow {
+    opacity: 1;
+    transform: translate(0, 0);
+  }
+
+  .card.featured {
+    border-color: var(--border-accent);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 200px;
+  }
+
+  .card.featured:hover { border-color: rgba(162, 89, 255, 0.55); }
+
+  .card.placeholder {
+    border: 1px dashed var(--border-placeholder);
+    background: var(--bg-card-placeholder);
+    cursor: default;
+  }
+
+  .card-inner { flex: 1; }
+
+  .card-type {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    font-weight: 400;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 8px;
+  }
+
+  .placeholder .card-type { color: var(--text-placeholder); }
+
+  .card-title {
+    font-family: var(--font-display);
+    font-size: 16px;
+    font-weight: 800;
+    color: var(--text);
+    letter-spacing: -0.02em;
+    margin-bottom: 8px;
+  }
+
+  .featured .card-title { font-size: 24px; }
+  .placeholder .card-title { color: var(--text-placeholder); }
+
+  .card-desc {
+    font-family: var(--font-body);
+    font-size: 14px;
+    font-weight: 300;
+    color: var(--text-muted);
+    line-height: 1.65;
+  }
+
+  .placeholder .card-desc { color: var(--border-placeholder); }
+
+  .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+    list-style: none;
+    margin-top: 14px;
+  }
+
+  .tag {
+    font-family: var(--font-mono);
+    font-size: 8px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 3px 7px;
+    border-radius: 2px;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    color: var(--text-dim);
+  }
+
+  .arrow {
+    position: absolute;
+    bottom: 16px; right: 16px;
+    width: 28px; height: 28px;
+    border: 1px solid rgba(162, 89, 255, 0.3);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 12px;
+    color: var(--accent);
+    opacity: 0;
+    transform: translate(4px, 4px);
+    transition: opacity 0.2s, transform 0.2s;
+  }
+
+  /* Arrow only shows on hover-capable devices */
+  @media (hover: none) {
+    .arrow { display: none; }
+  }
+</style>

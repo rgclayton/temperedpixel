@@ -1,0 +1,220 @@
+---
+interface HeroPhoto {
+  src: string;
+  alt: string;
+}
+
+interface Props {
+  photos?: HeroPhoto[];
+}
+
+// Default placeholder — replace with paths to your curated hero images in public/photos/
+// Requirements: dark tones, interesting texture, negative space on the left
+const defaultPhotos: HeroPhoto[] = [
+  { src: '', alt: '' },
+];
+
+const { photos = defaultPhotos } = Astro.props;
+const hasPhotos = photos.length > 0 && photos[0].src !== '';
+---
+
+<section class="hero" aria-label="Introduction">
+  {hasPhotos && (
+    <div class="photo-stage" aria-hidden="true">
+      {photos.map((photo, i) => (
+        <div
+          class="photo-slide"
+          data-index={i}
+          style={`background-image: url('${photo.src}')`}
+        />
+      ))}
+    </div>
+  )}
+
+  <div class="scrim" aria-hidden="true" />
+
+  <div class="hero-content">
+    <p class="eyebrow">Senior Front-End Engineer · Design Lead</p>
+    <h1 class="name">
+      Tempered<span class="name-accent">Pixel</span>
+    </h1>
+    <p class="bio">
+      A showcase of work and experiments by <strong>Ryan Clayton</strong> — a senior front-end engineer working in platform engineering,
+      design systems, and making complex tools understandable
+      for the people who use them.
+    </p>
+  </div>
+
+  {hasPhotos && photos.length > 1 && (
+    <div class="dots" aria-hidden="true">
+      {photos.map((_, i) => (
+        <button
+          type="button"
+          class="dot"
+          data-target={i}
+          aria-label={`Photo ${i + 1}`}
+        />
+      ))}
+    </div>
+  )}
+</section>
+
+<script>
+  import { pickRandomIndex } from '../utils/photos';
+
+  function initHero() {
+    const slides = document.querySelectorAll<HTMLElement>('.photo-slide');
+    const dots   = document.querySelectorAll<HTMLButtonElement>('.dot');
+
+    if (slides.length > 1) {
+      let current = pickRandomIndex(slides.length);
+
+      function goTo(index: number) {
+        slides.forEach(s => s.classList.remove('active'));
+        dots.forEach(d => d.classList.remove('active'));
+        current = index;
+        slides[current].classList.add('active');
+        dots[current]?.classList.add('active');
+      }
+
+      goTo(current);
+      dots.forEach((dot, i) => dot.addEventListener('click', () => goTo(i)));
+    }
+  }
+
+  document.addEventListener('astro:page-load', initHero);
+</script>
+
+<style>
+  .hero {
+    /* Always dark — never uses --bg so light mode doesn't affect it */
+    background: #111114;
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 0 48px 72px;
+    overflow: hidden;
+  }
+
+  .photo-stage {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+  }
+
+  .photo-slide {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
+    opacity: 0;
+    transition: opacity 0.9s ease;
+  }
+
+  .photo-slide.active { opacity: 1; }
+
+  /* Three-layer scrim */
+  .scrim {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background:
+      linear-gradient(to bottom,
+        rgba(17, 17, 20, 0.5)  0%,
+        rgba(17, 17, 20, 0.0) 20%,
+        rgba(17, 17, 20, 0.0) 40%,
+        rgba(17, 17, 20, 0.7) 68%,
+        rgba(17, 17, 20, 0.95) 85%,
+        #111114 100%
+      ),
+      radial-gradient(ellipse at center, transparent 50%, rgba(17, 17, 20, 0.35) 100%);
+    pointer-events: none;
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 860px;
+  }
+
+  .eyebrow {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: #a259ff;
+    margin-bottom: 14px;
+  }
+
+  .name {
+    font-family: var(--font-display);
+    font-size: clamp(56px, 9vw, 70px);
+    font-weight: 900;
+    line-height: 0.92;
+    letter-spacing: -0.04em;
+    color: #ffffff;
+    margin-bottom: 24px;
+    text-shadow: 0 4px 60px rgba(0, 0, 0, 0.5);
+  }
+
+  .name-accent { color: #a259ff; }
+
+  .bio {
+    font-family: var(--font-body);
+    font-size: 15px;
+    font-weight: 300;
+    color: rgba(255, 255, 255, 0.5);
+    max-width: 460px;
+    line-height: 1.75;
+  }
+
+  .bio strong { color: rgba(255, 255, 255, 0.78); font-weight: 500; }
+
+  .dots {
+    position: absolute;
+    bottom: 28px;
+    right: 48px;
+    z-index: 3;
+    display: flex;
+    gap: 7px;
+    align-items: center;
+  }
+
+  .dot {
+    width: 44px;
+    height: 44px;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    display: grid;
+    place-items: center;
+    padding: 0;
+  }
+
+  .dot::after {
+    content: '';
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.2);
+    transition: background 0.25s, transform 0.25s;
+    display: block;
+  }
+
+  .dot.active::after {
+    background: #a259ff;
+    transform: scale(1.3);
+  }
+
+  @media (max-width: 1024px) {
+    .hero { padding: 0 32px 64px; }
+  }
+
+  @media (max-width: 640px) {
+    .hero { padding: 0 20px 56px; }
+    .bio { font-size: 13px; max-width: 100%; }
+    .dots { right: 50%; transform: translateX(50%); }
+  }
+</style>

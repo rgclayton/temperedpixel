@@ -1,0 +1,146 @@
+---
+interface Photo {
+  src: string;
+  location: string;
+  year: string;
+}
+
+interface Props {
+  photos: Photo[];
+  constrained?: boolean;
+}
+
+const { photos, constrained = false } = Astro.props;
+---
+
+<div class:list={['gallery', { constrained }]} data-photos={JSON.stringify(photos)}>
+  {photos.map((photo, i) => (
+    <div class="photo-card" data-index={i} tabindex="0" role="button" aria-label={`View ${photo.location}, ${photo.year}`}>
+      <img
+        src={photo.src}
+        alt={`${photo.location}, ${photo.year}`}
+        class="photo-img"
+        loading="lazy"
+        decoding="async"
+      />
+      <div class="overlay" aria-hidden="true">
+        <span class="overlay-location">{photo.location}</span>
+        <span class="overlay-year">{photo.year}</span>
+      </div>
+    </div>
+  ))}
+</div>
+
+<script>
+  function initGallery() {
+    const galleries = document.querySelectorAll<HTMLElement>('.gallery');
+    galleries.forEach(gallery => {
+      const photos = JSON.parse(gallery.dataset.photos || '[]');
+      gallery.querySelectorAll('.photo-card').forEach((card, i) => {
+        card.addEventListener('click', (e) => {
+          (window as any).__lightboxOpen?.(i, photos, e.currentTarget as HTMLElement);
+        });
+        (card as HTMLElement).addEventListener('keydown', (e) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            (window as any).__lightboxOpen?.(i, photos, card as HTMLElement);
+          }
+        });
+      });
+    });
+  }
+
+  document.addEventListener('astro:page-load', initGallery);
+</script>
+
+<style>
+  .gallery {
+    columns: 3;
+    column-gap: 6px;
+    width: 100%;
+  }
+
+  .gallery.constrained {
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .photo-card {
+    break-inside: avoid;
+    margin-bottom: 6px;
+    position: relative;
+    border-radius: 3px;
+    overflow: hidden;
+    cursor: pointer;
+  }
+
+  .photo-card:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+  }
+
+  .photo-card::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border: 1.5px solid var(--accent);
+    border-radius: 3px;
+    opacity: 0;
+    transition: opacity 0.25s;
+    pointer-events: none;
+  }
+
+  .photo-img {
+    width: 100%;
+    display: block;
+    transition: transform 0.4s ease;
+  }
+
+  .overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(160deg, transparent 30%, rgba(0,0,0,0.78) 100%);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 12px;
+    transition: opacity 0.3s;
+  }
+
+  .overlay-location {
+    font-family: var(--font-display);
+    font-size: 12px; font-weight: 600;
+    color: #fff; line-height: 1.2;
+    transform: translateY(6px);
+    transition: transform 0.3s;
+  }
+
+  .overlay-year {
+    font-family: var(--font-mono);
+    font-size: 10px; color: var(--accent);
+    letter-spacing: 1px; margin-top: 2px;
+    transform: translateY(6px);
+    transition: transform 0.3s 0.04s;
+  }
+
+  /* Desktop: hover reveal */
+  @media (hover: hover) {
+    .overlay { opacity: 0; }
+    .photo-card:hover .overlay { opacity: 1; }
+    .photo-card:hover .overlay-location,
+    .photo-card:hover .overlay-year { transform: translateY(0); }
+    .photo-card:hover .photo-img { transform: scale(1.03); }
+    .photo-card:hover::after { opacity: 0.45; }
+  }
+
+  /* Touch: captions always visible */
+  @media (hover: none) {
+    .overlay { opacity: 1; }
+    .overlay-location,
+    .overlay-year { transform: translateY(0); }
+  }
+
+  /* Responsive columns */
+  @media (max-width: 1024px) { .gallery { columns: 2; } }
+  @media (max-width: 640px)  { .gallery { columns: 1; } }
+</style>

@@ -1,0 +1,192 @@
+---
+// Lightbox is activated by PhotoGallery's JS via window.__lightboxOpen
+---
+
+<div id="lightbox" class="lightbox" role="dialog" aria-modal="true" aria-label="Photo viewer" hidden>
+  <button type="button" class="lb-close" id="lb-close" aria-label="Close photo viewer">✕</button>
+
+  <div class="lb-photo-wrap">
+    <img id="lb-photo" src="" alt="" class="lb-photo" />
+  </div>
+
+  <div class="lb-footer">
+    <div class="lb-caption">
+      <span id="lb-location" class="lb-location"></span>
+      <span id="lb-year" class="lb-year"></span>
+    </div>
+    <div class="lb-nav">
+      <button type="button" class="lb-arrow" id="lb-prev" aria-label="Previous photo">←</button>
+      <span class="lb-counter" id="lb-counter" aria-live="polite">1 / 1</span>
+      <button type="button" class="lb-arrow" id="lb-next" aria-label="Next photo">→</button>
+    </div>
+  </div>
+</div>
+
+<script>
+  interface PhotoData {
+    src: string;
+    location: string;
+    year: string;
+  }
+
+  let photos: PhotoData[] = [];
+  let current = 0;
+  let openerEl: HTMLElement | null = null;
+
+  function initLightbox() {
+    const lb       = document.getElementById('lightbox') as HTMLElement;
+    const img      = document.getElementById('lb-photo') as HTMLImageElement;
+    const location = document.getElementById('lb-location') as HTMLElement;
+    const year     = document.getElementById('lb-year') as HTMLElement;
+    const counter  = document.getElementById('lb-counter') as HTMLElement;
+    const closeBtn = document.getElementById('lb-close') as HTMLButtonElement;
+    const prevBtn  = document.getElementById('lb-prev') as HTMLButtonElement;
+    const nextBtn  = document.getElementById('lb-next') as HTMLButtonElement;
+
+    if (!lb || !img || !location || !year || !counter || !closeBtn || !prevBtn || !nextBtn) return;
+
+    function show(index: number) {
+      current = (index + photos.length) % photos.length;
+      const p = photos[current];
+      img.src = p.src;
+      img.alt = `${p.location} ${p.year}`;
+      location.textContent = p.location;
+      year.textContent = p.year;
+      counter.textContent = `${current + 1} / ${photos.length}`;
+    }
+
+    function open(index: number, data: PhotoData[], trigger?: HTMLElement) {
+      openerEl = trigger ?? null;
+      photos = data;
+      lb.hidden = false;
+      document.body.style.overflow = 'hidden';
+      show(index);
+      closeBtn.focus();
+    }
+
+    function close() {
+      lb.hidden = true;
+      document.body.style.overflow = '';
+      openerEl?.focus();
+      openerEl = null;
+    }
+
+    closeBtn.addEventListener('click', close);
+    prevBtn.addEventListener('click', () => show(current - 1));
+    nextBtn.addEventListener('click', () => show(current + 1));
+
+    document.addEventListener('keydown', e => {
+      if (lb.hidden) return;
+      if (e.key === 'Escape')     close();
+      if (e.key === 'ArrowLeft')  show(current - 1);
+      if (e.key === 'ArrowRight') show(current + 1);
+    });
+
+    lb.addEventListener('click', e => { if (e.target === lb) close(); });
+
+    let touchX = 0;
+    lb.addEventListener('touchstart', e => { touchX = e.touches[0].clientX; }, { passive: true });
+    lb.addEventListener('touchend', e => {
+      const dx = e.changedTouches[0].clientX - touchX;
+      if (Math.abs(dx) > 40) show(dx < 0 ? current + 1 : current - 1);
+    });
+
+    document.addEventListener('astro:before-swap', () => {
+      if (!lb.hidden) close();
+    });
+
+    (window as any).__lightboxOpen = open;
+  }
+
+  document.addEventListener('astro:page-load', initLightbox);
+</script>
+
+<style>
+  .lightbox {
+    position: fixed;
+    inset: 0;
+    background: rgba(8, 8, 10, 0.96);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    z-index: 200;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    padding: 24px;
+  }
+
+  .lightbox[hidden] { display: none; }
+
+  .lb-close {
+    position: absolute;
+    top: 20px; right: 20px;
+    width: 44px; height: 44px;
+    border: 1px solid var(--border);
+    border-radius: 50%;
+    background: transparent;
+    color: var(--text-dim);
+    font-size: 16px; cursor: pointer;
+    display: grid; place-items: center;
+    transition: border-color 0.2s, color 0.2s;
+  }
+
+  .lb-close:hover { border-color: var(--accent); color: var(--accent); }
+
+  .lb-photo-wrap {
+    max-width: 90vw; max-height: 70vh;
+    display: flex; align-items: center; justify-content: center;
+  }
+
+  .lb-photo {
+    max-width: 100%; max-height: 70vh;
+    border-radius: 4px;
+    object-fit: contain;
+  }
+
+  .lb-footer {
+    width: 100%; max-width: 680px;
+    display: flex; justify-content: space-between; align-items: center;
+    gap: 16px;
+  }
+
+  .lb-caption { display: flex; flex-direction: column; gap: 2px; }
+
+  .lb-location {
+    font-family: var(--font-display);
+    font-size: 15px; font-weight: 800; color: #fff;
+  }
+
+  .lb-year {
+    font-family: var(--font-mono);
+    font-size: 10px; color: var(--accent); letter-spacing: 1px;
+  }
+
+  .lb-nav { display: flex; align-items: center; gap: 12px; }
+
+  .lb-arrow {
+    width: 44px; height: 44px;
+    border: 1px solid var(--border-accent);
+    border-radius: 50%; background: transparent;
+    color: var(--accent); font-size: 15px; cursor: pointer;
+    display: grid; place-items: center;
+    transition: border-color 0.2s, background 0.2s;
+  }
+
+  .lb-arrow:hover {
+    border-color: var(--accent);
+    background: var(--accent-glow);
+  }
+
+  .lb-counter {
+    font-family: var(--font-mono);
+    font-size: 10px; color: var(--text-dim); letter-spacing: 2px;
+    min-width: 48px; text-align: center;
+  }
+
+  @media (max-width: 640px) {
+    .lb-footer { flex-direction: column; align-items: flex-start; }
+    .lb-nav { align-self: center; }
+  }
+</style>

@@ -1,0 +1,124 @@
+/* ============================================================
+   Design tokens — NEVER use hardcoded hex values in components.
+   All colours, fonts, and borders must reference these vars.
+   ============================================================ */
+
+:root {
+  /* Backgrounds */
+  --bg:                  #111114;
+  --bg-card:             #1c1c22;
+  --bg-card-hover:       #1e1e28;
+  --bg-card-placeholder: #141418;
+
+  /* Text */
+  --text:            #ffffff;
+  --text-muted:      rgba(255, 255, 255, 0.5);
+  --text-dim:        #555555;
+  --text-placeholder: #2e2e3a;
+
+  /* Accent */
+  --accent:     #a259ff;
+  --accent-dim: #7b3fe4;
+  --accent-glow:rgba(162, 89, 255, 0.15);
+
+  /* Borders */
+  --border:             #222228;
+  --border-accent:      rgba(162, 89, 255, 0.2);
+  --border-placeholder: #242430;
+
+  /* Fonts */
+  --font-display:  'DM Sans Variable', 'DM Sans', sans-serif;
+  --font-body:     'Space Grotesk Variable', 'Space Grotesk', sans-serif;
+  --font-longform: 'Lora Variable', 'Lora', serif;
+  --font-mono:     'JetBrains Mono Variable', 'JetBrains Mono', monospace;
+}
+
+/* Light mode — hero section always stays dark (see Hero.astro) */
+[data-theme="light"] {
+  --bg:                  #f8f7f5;
+  --bg-card:             #ffffff;
+  --bg-card-hover:       #f3f1f8;
+  --bg-card-placeholder: #f0eef5;
+  --text:            #111114;
+  --text-muted:      rgba(17, 17, 20, 0.55);
+  --text-dim:        #888888;
+  --text-placeholder:#c0bcc8;
+  --accent:     #7b3fe4;
+  --accent-dim: #5e20c0;
+  --accent-glow:rgba(123, 63, 228, 0.1);
+  --border:             #e8e6f0;
+  --border-accent:      rgba(123, 63, 228, 0.2);
+  --border-placeholder: #dddae8;
+}
+
+/* ============================================================
+   Reset
+   ============================================================ */
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-weight: 300;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+img, video { display: block; max-width: 100%; }
+
+a { color: inherit; }
+
+/* ============================================================
+   Base typography
+   ============================================================ */
+
+h1, h2, h3, h4 {
+  font-family: var(--font-display);
+  font-weight: 900;
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+}
+
+code, kbd, pre {
+  font-family: var(--font-mono);
+}
+
+/* ============================================================
+   View Transition animations (slide right→left on navigate)
+   ============================================================ */
+
+@keyframes tp-slide-in {
+  from { transform: translateX(30px); opacity: 0; }
+  to   { transform: translateX(0);    opacity: 1; }
+}
+
+@keyframes tp-slide-out {
+  from { transform: translateX(0);    opacity: 1; }
+  to   { transform: translateX(-30px); opacity: 0; }
+}
+
+::view-transition-old(root) {
+  animation: tp-slide-out 0.25s ease both;
+}
+
+::view-transition-new(root) {
+  animation: tp-slide-in 0.25s ease both;
+}
+
+/* ============================================================
+   Utility
+   ============================================================ */
+
+.visually-hidden {
+  position: absolute;
+  width: 1px; height: 1px;
+  padding: 0; margin: -1px;
+  overflow: hidden;
+  clip: rect(0,0,0,0);
+  white-space: nowrap;
+  border: 0;
+}
