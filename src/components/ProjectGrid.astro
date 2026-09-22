@@ -5,44 +5,15 @@ import ProjectCard from './ProjectCard.astro';
 const allProjects = await getCollection('projects');
 const sorted = allProjects.sort((a, b) => a.data.order - b.data.order);
 
-const featured = sorted.find(p => p.data.featured) ?? sorted[0];
-// Placeholder ("coming soon") entries stay reachable by URL but never take
-// a grid slot — otherwise identical placeholder cards crowd out real work.
-const rest = sorted.filter(p => p !== featured && !p.data.placeholder);
-
-// Top row: [featured (2fr)] [rest[0] (1fr)]
-// Bottom row: rest[1...] (1fr each, wraps to additional rows automatically)
-const topRight  = rest[0];
-const bottomRow = rest.slice(1);
+// Placeholders stay reachable by URL but don't get a grid slot.
+const projects = sorted.filter(p => !p.data.placeholder);
 ---
 
 <section id="work" class="grid-section" aria-label="Selected work">
   <p class="section-label">Selected work</p>
 
-  <div class="grid-top">
-    <ProjectCard
-      slug={featured.id}
-      title={featured.data.title}
-      type={featured.data.type}
-      summary={featured.data.summary}
-      tags={featured.data.tags}
-      placeholder={featured.data.placeholder}
-      featured={true}
-    />
-    {topRight && (
-      <ProjectCard
-        slug={topRight.id}
-        title={topRight.data.title}
-        type={topRight.data.type}
-        summary={topRight.data.summary}
-        tags={topRight.data.tags}
-        placeholder={topRight.data.placeholder}
-      />
-    )}
-  </div>
-
-  <div class="grid-bottom">
-    {bottomRow.map(project => (
+  <div class="grid">
+    {projects.map(project => (
       <ProjectCard
         slug={project.id}
         title={project.data.title}
@@ -50,15 +21,54 @@ const bottomRow = rest.slice(1);
         summary={project.data.summary}
         tags={project.data.tags}
         placeholder={project.data.placeholder}
+        featured={project.data.featured}
+        size={project.data.size}
+        image={project.data.image}
+        tabletSize={project.data.tabletSize}
+        desktopOrder={project.data.desktopOrder}
+        tabletOrder={project.data.tabletOrder}
       />
     ))}
   </div>
 </section>
 
+<script>
+  // CSS `order` moves cards visually but not in tab order, so we physically
+  // reorder the DOM to match instead — keeps keyboard/screen-reader order
+  // in sync with what's shown at each breakpoint.
+  document.addEventListener('astro:page-load', () => {
+    const grid = document.querySelector('.grid');
+    if (!grid) return;
+
+    // Original position, captured once — the fallback for ties on resort.
+    const cards = Array.from(grid.children).map((card, naturalIndex) => ({ card, naturalIndex }));
+
+    function readOrder(card: Element, prop: string) {
+      return Number(getComputedStyle(card).getPropertyValue(prop)) || 0;
+    }
+
+    function reorder() {
+      const width = window.innerWidth;
+      const prop = width >= 1025 ? '--desktop-order' : width >= 641 ? '--tablet-order' : null;
+
+      cards
+        .slice()
+        .sort((a, b) => {
+          const order = prop ? readOrder(a.card, prop) - readOrder(b.card, prop) : 0;
+          return order || a.naturalIndex - b.naturalIndex;
+        })
+        .forEach(({ card }) => grid!.appendChild(card));
+    }
+
+    reorder();
+    window.addEventListener('resize', reorder);
+  });
+</script>
+
 <style>
   .grid-section {
     padding: 64px 48px 80px;
-    max-width: calc(860px + 96px);
+    max-width: 1280px;
     margin: 0 auto;
   }
 
@@ -71,29 +81,23 @@ const bottomRow = rest.slice(1);
     margin-bottom: 20px;
   }
 
-  .grid-top {
+  .grid {
     display: grid;
-    grid-template-columns: 2fr 1fr;
-    gap: 6px;
-    margin-bottom: 6px;
-  }
-
-  .grid-bottom {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: repeat(3, 1fr);
+    grid-auto-rows: minmax(200px, auto);
+    grid-auto-flow: dense;
     gap: 6px;
   }
 
   /* Tablet */
   @media (max-width: 1024px) {
     .grid-section { padding: 48px 32px 64px; }
-    .grid-bottom { grid-template-columns: 1fr 1fr; }
+    .grid { grid-template-columns: repeat(2, 1fr); }
   }
 
   /* Mobile */
   @media (max-width: 640px) {
     .grid-section { padding: 40px 20px 56px; }
-    .grid-top    { grid-template-columns: 1fr; }
-    .grid-bottom { grid-template-columns: 1fr; }
+    .grid { grid-template-columns: 1fr; }
   }
 </style>

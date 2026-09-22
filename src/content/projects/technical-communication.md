@@ -8,6 +8,8 @@ year: "2021–present"
 role: Technical Communicator & Community Lead
 tags: [Documentation, Education, AEM, Franklin]
 order: 4
+desktopOrder: 1
+tabletOrder: 1
 ---
 
 ## Overview

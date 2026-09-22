@@ -7,6 +7,12 @@ interface Props {
   tags: string[];
   placeholder?: boolean;
   featured?: boolean;
+  size?: 'normal' | 'wide' | 'tall' | 'large';
+  image?: string;
+  // Per-breakpoint overrides. Optional — see content.config.ts.
+  tabletSize?: 'normal' | 'wide' | 'tall' | 'large';
+  desktopOrder?: number;
+  tabletOrder?: number;
 }
 
 const {
@@ -17,16 +23,22 @@ const {
   tags,
   placeholder = false,
   featured = false,
+  size = 'normal',
+  image,
+  tabletSize,
+  desktopOrder,
+  tabletOrder,
 } = Astro.props;
 ---
 
 <a
   href={placeholder ? undefined : `/work/${slug}`}
-  class:list={['card', { featured, placeholder }]}
+  class:list={['card', `size-${size}`, tabletSize && `tablet-size-${tabletSize}`, { featured, placeholder, 'has-image': !!image }]}
   aria-label={placeholder ? `${title} — coming soon` : `View ${title} project`}
   tabindex={placeholder ? -1 : 0}
-  style={`view-transition-name: card-${slug}`}
+  style={`view-transition-name: card-${slug}; --desktop-order: ${desktopOrder ?? 0}; --tablet-order: ${tabletOrder ?? 0};`}
 >
+  {image && <div class="card-bg" style={`background-image: url('${image}')`} />}
   <div class="card-inner">
     <p class="card-type">{type === 'engineering' ? 'Engineering' : 'Design'}{placeholder ? ' · Coming soon' : ''}</p>
     <h2 class="card-title" style={`view-transition-name: title-${slug}`}>{title}</h2>
@@ -45,11 +57,12 @@ const {
     display: block;
     background: var(--bg-card);
     border: 1px solid var(--border);
-    border-radius: 4px;
+    border-radius: 8px;
     padding: 22px;
     text-decoration: none;
     transition: border-color 0.2s, background 0.2s;
     position: relative;
+    overflow: hidden;
     cursor: pointer;
   }
 
@@ -79,7 +92,39 @@ const {
     cursor: default;
   }
 
-  .card-inner { flex: 1; }
+  .card-inner { flex: 1; position: relative; z-index: 1; }
+
+  /* Full-bleed background photo, only rendered when `image` is set.
+     Without it, the card just keeps the plain --bg-card look above. */
+  .card-bg {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    background-size: cover;
+    background-position: center;
+  }
+
+  /* Scrim for legibility over an arbitrary photo. Hardcoded, not theme
+     tokens — same as Hero.astro's scrim, since this must work regardless
+     of light/dark site theme. */
+  .card-bg::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(17, 17, 20, 0.72);
+  }
+
+  .card.has-image .card-type  { color: #a259ff; }
+  .card.has-image .card-title { color: #ffffff; }
+  .card.has-image .card-desc  { color: rgba(255, 255, 255, 0.7); }
+
+  .card.has-image .tag {
+    background: rgba(17, 17, 20, 0.5);
+    border-color: rgba(255, 255, 255, 0.15);
+    color: rgba(255, 255, 255, 0.8);
+  }
+
+  .card.has-image .arrow { color: #a259ff; }
 
   .card-type {
     font-family: var(--font-mono);
@@ -138,6 +183,7 @@ const {
   .arrow {
     position: absolute;
     bottom: 16px; right: 16px;
+    z-index: 1;
     width: 28px; height: 28px;
     border: 1px solid rgba(162, 89, 255, 0.3);
     border-radius: 50%;
@@ -152,5 +198,33 @@ const {
   /* Arrow only shows on hover-capable devices */
   @media (hover: none) {
     .arrow { display: none; }
+  }
+
+  /* Bento grid spans. Named presets, not raw column/row numbers, so
+     authors pick a size rather than a coordinate. */
+  .size-wide  { grid-column: span 2; }
+  .size-tall  { grid-row: span 2; }
+  .size-large { grid-column: span 2; grid-row: span 2; }
+
+  /* Tablet-only size override, from `tabletSize` — same 4 presets as
+     `size`, just for this one breakpoint. Visual order for this and
+     desktop is handled in ProjectGrid.astro's script, not CSS `order`
+     (that only moves things visually, not in tab order). */
+  @media (min-width: 641px) and (max-width: 1024px) {
+    .tablet-size-normal { grid-column: span 1; grid-row: span 1; }
+    .tablet-size-wide   { grid-column: span 2; grid-row: span 1; }
+    .tablet-size-tall   { grid-column: span 1; grid-row: span 2; }
+    .tablet-size-large  { grid-column: span 2; grid-row: span 2; }
+  }
+
+  /* Mobile is a single column — reset every span so cards stack plainly
+     instead of leaving gaps. */
+  @media (max-width: 640px) {
+    .size-wide,
+    .size-tall,
+    .size-large {
+      grid-column: span 1;
+      grid-row: span 1;
+    }
   }
 </style>

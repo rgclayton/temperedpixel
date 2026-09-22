@@ -17,6 +17,12 @@ const projects = defineCollection({
     live:        z.string().url().optional(),
     image:       z.string().optional(),
     order:       z.number().default(99),
+    // Homepage bento grid span. See ProjectCard.astro.
+    size:        z.enum(['normal', 'wide', 'tall', 'large']).default('normal'),
+    // Optional per-breakpoint overrides — omit to fall back to the fields above.
+    tabletSize:   z.enum(['normal', 'wide', 'tall', 'large']).optional(),
+    desktopOrder: z.number().optional(),
+    tabletOrder:  z.number().optional(),
   }),
 });
 

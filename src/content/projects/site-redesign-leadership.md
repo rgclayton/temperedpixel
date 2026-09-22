@@ -8,6 +8,7 @@ year: "2026"
 role: Senior Front-End Engineer
 tags: [Technical Leadership, Cross-team Collaboration, Performance, Accessibility]
 order: 1.7
+size: normal
 ---
 
 ## Overview

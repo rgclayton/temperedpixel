@@ -10,6 +10,7 @@ tags: [JavaScript, CSS, Franklin, AEM, Web Performance]
 github: https://github.com/adobecom/milo
 live: https://adobe.com
 order: 1
+size: large
 ---
 
 ## Overview

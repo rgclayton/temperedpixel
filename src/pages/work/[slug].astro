@@ -18,9 +18,10 @@ const { project } = Astro.props;
 const { Content } = await render(project);
 const { title, type, summary, year, role, tags, github, live, placeholder } = project.data;
 
-// Next project navigation
+// Next project navigation — placeholders excluded so the chain wraps
+// straight to the first real project instead of dead-ending near the end.
 const all = await getCollection('projects');
-const sorted = all.sort((a, b) => a.data.order - b.data.order);
+const sorted = all.filter(p => !p.data.placeholder).sort((a, b) => a.data.order - b.data.order);
 const idx = sorted.findIndex(p => p.id === project.id);
 const next = sorted[(idx + 1) % sorted.length];
 ---
@@ -61,7 +62,7 @@ const next = sorted[(idx + 1) % sorted.length];
       {live   && <a href={live}   class="detail-link" target="_blank" rel="noopener noreferrer">Live site →</a>}
     </div>
 
-    {next && !next.data.placeholder && (
+    {next && (
       <nav class="next-project" aria-label="Next project">
         <span class="next-label">Next</span>
         <a href={`/work/${next.id}`} class="next-link">{next.data.title} →</a>
@@ -161,7 +162,7 @@ const next = sorted[(idx + 1) % sorted.length];
     display: block;
     width: 100%;
     height: auto;
-    border-radius: 6px;
+    border-radius: 8px;
     border: 1px solid var(--border);
     margin: 32px 0;
   }

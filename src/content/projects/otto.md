@@ -9,6 +9,9 @@ role: Senior Front-End Engineer
 tags: [JavaScript, Vanilla JS, Personal Tooling, Automation]
 github: https://github.com/rgclayton/otto-app
 order: 3
+size: large
+tabletSize: normal
+tabletOrder: 2
 ---
 
 ## Overview

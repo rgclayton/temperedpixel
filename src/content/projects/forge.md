@@ -6,9 +6,10 @@ placeholder: false
 summary: In-browser authoring tools for Adobe's Site Redesign — letting production teams build scroll animations and review pages without engineering in the loop.
 year: "2026"
 role: Senior Front-End Engineer
-tags: [JavaScript, Tooling, DX, AEM Sidekick]
+tags: [JavaScript, React, Tooling, DX, AEM Sidekick]
 github: https://github.com/adobecom/milo
 order: 1.5
+size: tall
 ---
 
 ## Overview

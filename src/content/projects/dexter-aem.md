@@ -8,6 +8,10 @@ year: "2019–2021"
 role: Senior Front-End Engineer
 tags: [JavaScript, CSS, AEM, Spectrum, Java]
 order: 2
+size: wide
+tabletSize: normal
+desktopOrder: 2
+tabletOrder: 3
 ---
 
 ## Overview
