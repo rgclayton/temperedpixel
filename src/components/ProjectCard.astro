@@ -101,8 +101,11 @@ const {
     inset: 0;
     z-index: 0;
     background-size: cover;
-    background-position: center;
+    background-position: left;
+    transition: transform 0.5s ease;
   }
+
+  .card:hover .card-bg { transform: scale(1.14); }
 
   /* Scrim for legibility over an arbitrary photo. Hardcoded, not theme
      tokens — same as Hero.astro's scrim, since this must work regardless

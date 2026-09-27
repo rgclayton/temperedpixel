@@ -1,6 +1,7 @@
 ---
 import { getCollection, render, type CollectionEntry } from 'astro:content';
 import Base from '../../layouts/Base.astro';
+import Lightbox from '../../components/Lightbox.astro';
 
 export async function getStaticPaths() {
   const projects = await getCollection('projects');
@@ -70,7 +71,24 @@ const next = sorted[(idx + 1) % sorted.length];
     )}
 
   </article>
+  <Lightbox />
 </Base>
+
+<script>
+  document.addEventListener('astro:page-load', () => {
+    const imgs = Array.from(document.querySelectorAll('.prose img')) as HTMLImageElement[];
+    if (!imgs.length) return;
+
+    const data = imgs.map(img => ({ src: img.src, location: img.alt || '', year: '' }));
+
+    imgs.forEach((img, i) => {
+      img.style.cursor = 'zoom-in';
+      img.addEventListener('click', () => {
+        (window as any).__lightboxOpen?.(i, data, img);
+      });
+    });
+  });
+</script>
 
 <style>
   .detail {

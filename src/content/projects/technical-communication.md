@@ -10,6 +10,7 @@ tags: [Documentation, Education, AEM, Franklin]
 order: 4
 desktopOrder: 1
 tabletOrder: 1
+image: /projects/technical-communication/cover/tech-comms-cover.png
 ---
 
 ## Overview

@@ -11,6 +11,7 @@ github: https://github.com/adobecom/milo
 order: 1.7
 size: tall
 tabletSize: normal
+image: /projects/forge/cover/forge-cover.png
 ---
 
 ## Overview

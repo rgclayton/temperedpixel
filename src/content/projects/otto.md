@@ -12,6 +12,7 @@ order: 3
 size: tall
 tabletSize: normal
 tabletOrder: 2
+image: /projects/otto/cover/otto-cover.png
 ---
 
 ## Overview
@@ -29,3 +30,10 @@ When the velocity of the Site Redesign outpaced the coordination around it, thin
 ## What I learned
 
 Building a tool only I would use removed every excuse to over-engineer it — no framework, no build step, just the smallest thing that could scan three inboxes and tell me the truth about my day. The capture/display split ended up being the one architectural call that made every later change easy: nine times out of ten, a change request turns out to be about how Otto shows what it already knows, not what it's allowed to know in the first place.
+
+## Screenshots
+
+![Otto — Today view](/projects/otto/otto-today.png)
+![Otto — This week view](/projects/otto/otto-thisweek.png)
+![Otto — Weekly review](/projects/otto/otto-weekly-review.png)
+![Otto — About](/projects/otto/otto-about.png)

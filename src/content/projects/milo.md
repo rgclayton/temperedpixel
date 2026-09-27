@@ -11,6 +11,7 @@ github: https://github.com/adobecom/milo
 live: https://adobe.com
 order: 1
 size: large
+image: /projects/milo/cover/milo-cover.png
 ---
 
 ## Overview
@@ -32,3 +33,4 @@ size: large
 ## What I've learned
 
 Code ownership at this scale is mostly invisible — the changes that don't ship wrong, the question answered before it becomes a ticket, the production gate held until the right moment. The value shows up in what doesn't go wrong.
+

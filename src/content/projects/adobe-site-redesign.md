@@ -9,6 +9,7 @@ role: Senior Front-End Engineer
 tags: [JavaScript, CSS, Design Tokens, Performance, Accessibility, Technical Leadership]
 order: 1.5
 size: tall
+image: /projects/adobe-site-redesign/cover/adobe-homepage.png
 ---
 
 ## Overview
@@ -48,3 +49,7 @@ My role spanned the full pipeline — sitting with the design team to work throu
 ## What I learned
 
 A redesign this large runs on horizontal decisions that don't belong to any single page team — the token system, the heading-hierarchy call, the LCP audit. Being useful meant stepping into that gap deliberately, and absorbing enough ambiguity that other people weren't stuck waiting on a decision.
+
+## Screenshots
+
+![Adobe.com homepage](/projects/adobe-site-redesign/cover/adobe-homepage.png)
