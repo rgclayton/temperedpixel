@@ -3,7 +3,7 @@ title: Technical Communication
 type: engineering
 featured: false
 placeholder: false
-summary: Documentation and bi-weekly live demos for Adobe's authoring and GWP community — translating complex platform engineering into accessible knowledge for non-technical stakeholders.
+summary: Writing, documentation, and live demos that translate complex platform engineering into something the broader organization can act on — the skill that makes the cross-team work possible.
 year: "2021–present"
 role: Technical Communicator & Community Lead
 tags: [Documentation, Education, AEM, Franklin]
@@ -14,12 +14,16 @@ tabletOrder: 1
 
 ## Overview
 
-One of the most impactful and distinctive parts of my role at Adobe has been bridging the gap between platform engineering and the people who use the platform daily.
+Platform engineering only works if the people using the platform can actually use it. At Adobe, that means a large community of content authors and production teams who build and maintain pages across adobe.com — people who aren't engineers but depend on what engineers ship. A standing part of my role has been making sure that gap stays closed.
 
 ## What I do
 
-I create and maintain documentation for the authoring and GWP (Global Web Platform) community, and run bi-weekly live demos that walk non-technical content authors through new platform features, authoring workflows, and best practices.
+**Documentation** — written guides and references for the authoring and Global Web Production community, covering new blocks, authoring workflows, and platform capabilities as they ship. Written for people who need to act on the information, not for people who already understand it.
 
-## Why it matters
+**Live demos** — bi-weekly sessions that walk content authors through new platform features in real time, on real pages. The format keeps the feedback loop short: if something is confusing in a demo, it gets fixed before it becomes a support request.
 
-Most engineers can build complex tools. Very few can explain them clearly to the people who need to use them. I've built a track record at Adobe of being one of the few engineers who consistently makes that translation work — through written docs, live sessions, and direct community engagement.
+**Direct engagement** — when colleagues across design, production, and content teams have questions about what's possible on the platform, those questions come here rather than going into a queue. That directness is faster for them and keeps engineering aware of where the gaps are.
+
+## What I learned
+
+The ability to translate complex engineering clearly — not just document it, but make it genuinely usable — is what makes the cross-team work possible. Without it, every handoff is a negotiation and every new feature needs an interpreter.

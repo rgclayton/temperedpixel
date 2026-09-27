@@ -3,7 +3,7 @@ title: Milo
 type: engineering
 featured: true
 placeholder: false
-summary: Shared library powering adobe.com — components, services, and authoring tools across the entire Adobe web platform.
+summary: Code owner and primary U.S.-hours engineer on the shared platform powering millions of adobe.com visitors — the review gate across the full block library, a technical resource other teams route through, and the engineer bridging a distributed team across two continents.
 year: "2021–present"
 role: Senior Front-End Engineer
 tags: [JavaScript, CSS, Franklin, AEM, Web Performance]
@@ -15,18 +15,20 @@ size: large
 
 ## Overview
 
-The Adobe.com homepage is the front door for millions of visitors globally. In early 2026, the Milo team undertook a full visual and architectural redesign. I worked as a lead engineer for the engineering team that built and shipped it — one of the most technically demanding projects I've worked on at Adobe.
+[AEM](https://www.aem.live/) is Adobe's own document-based web publishing platform, used by companies large and small to build and manage web properties. Milo is Adobe's custom implementation of AEM built specifically for adobe.com — extending the platform to meet the scale and complexity of supporting the entire Adobe.com marketing organization and the hundreds of teams creating pages under it. As a code owner on both `adobecom/milo` and the Forge deployment repo, and the primary Milo engineer during U.S. hours, I'm a daily review and merge gate for platform output and the first technical resource other teams reach for when they're working in the Milo codebase.
 
-## What I built
+## What I do
 
-**Explore-Card & Bento layouts** — a flexible card system used throughout the page, including parallax scroll effects. I built the first iteration of the bento grid as a fully-authorable layout using CSS `grid-template-areas` — then made the call to move to baked-in variants after realising the authoring complexity would have been unworkable in practice. Sometimes the right engineering decision is the less elegant one.
+**Code ownership** — no change merges to production without going through the code-owner review chain — across every block, component, and shared service in the library. That covers routine updates, large batched production pushes, and anything that needs to be held until external dependencies clear — including platform-level accessibility improvements that don't belong to any one page team but have to get done right.
 
-**SEO architecture** — designers wanted h2 headings in the rotating marquee; SEO required a single h1 on the page. I built a `visually-hidden` block that satisfies both constraints without compromising either.
+**U.S. timezone coverage** — the core engineering team is based in Eastern Europe. By the time the U.S. day starts, their overnight work is already queued for review. Being the consistent U.S.-side presence means the platform keeps moving around the clock rather than waiting 24 hours for a response.
 
-**Performance engineering** — animation at this scale is expensive. I helped track and addressed LCP bottlenecks including commerce scripts preloading before the LCP element, worked with the Commerce platform team to resolve them, and helped establish performance as a first-class concern throughout the build — not an afterthought.
+**The engineer other teams route through** — whether the question is how a block works, whether a proposed change fits the platform's conventions, or whether something is safe to ship at this scale.
 
-**Code architecture** — standardised how all homepage blocks handle per-breakpoint logic by moving the pattern into a shared `decorate.js`. Collaborated with the team to migrate blocks to the new pattern pre-launch, keeping engineering consistent across a complex codebase with a tight timeline.
+**Security engineering** — investigated and fixed two linked vulnerabilities: one where unvalidated URL parameters allowed attackers to steal an author's Microsoft Graph access token via client-side config injection, and a follow-on where the OAuth configuration itself was being sourced from an unvalidated client-fetched config. Both fixed and shipped.
 
-## What I learned
+**Authoring enablement** — presented at a Milo Authoring Demo covering Marquee theming per breakpoint and video handling, helping the broader authoring community understand new capabilities as they shipped.
 
-Timeline pressure and late design requests are a constant tension on a project like this. Holding the line on performance while keeping momentum — and doing it clearly without stopping the team — is as much the job as writing the code.
+## What I've learned
+
+Code ownership at this scale is mostly invisible — the changes that don't ship wrong, the question answered before it becomes a ticket, the production gate held until the right moment. The value shows up in what doesn't go wrong.

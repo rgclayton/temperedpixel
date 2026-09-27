@@ -3,20 +3,20 @@ title: Otto
 type: engineering
 featured: false
 placeholder: false
-summary: A personal work tracker that scans Slack, email, and Teams every morning and turns what needs a reply into one view — so I know what I owe people before I open any of them.
+summary: Built when the velocity of the Site Redesign outpaced the coordination around it — a personal work tracker that scans Slack, email, and Teams every morning and surfaces what needs a reply, so nothing gets dropped in the gaps between teams.
 year: "2026"
 role: Senior Front-End Engineer
 tags: [JavaScript, Vanilla JS, Personal Tooling, Automation]
 github: https://github.com/rgclayton/otto-app
 order: 3
-size: large
+size: tall
 tabletSize: normal
 tabletOrder: 2
 ---
 
 ## Overview
 
-Otto answers one question every morning: what do I owe people, and can I take on more — without digging through Slack, email, and Teams myself to find out. It's a small static web app paired with an agent skill that scans those three sources and turns anything that needs a follow-up into a task, or a "loop" — a thread that's waiting on my reply.
+When the velocity of the Site Redesign outpaced the coordination around it, things started falling through the gaps between teams — replies owed, threads stalled, context lost across three inboxes. Otto was the answer I built rather than waited for. It answers one question every morning: what do I owe people, and can I take on more — without digging through Slack, email, and Teams myself to find out. A small static web app paired with an agent skill that scans those three sources and turns anything that needs a follow-up into a task, or a "loop" — a thread that's waiting on my reply.
 
 ## What I built
 

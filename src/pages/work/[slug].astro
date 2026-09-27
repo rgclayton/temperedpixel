@@ -157,6 +157,17 @@ const next = sorted[(idx + 1) % sorted.length];
 
   .prose :global(strong) { color: var(--text); font-weight: 600; }
 
+  .prose :global(a) {
+    color: var(--accent);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .prose :global(a:hover) { color: var(--text); }
+
+  .prose :global(ul) { margin-bottom: 20px; padding-left: 20px; }
+  .prose :global(li) { margin-bottom: 8px; }
+
   .prose :global(img),
   .prose :global(video) {
     display: block;
