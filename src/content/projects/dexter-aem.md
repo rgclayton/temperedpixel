@@ -20,13 +20,13 @@ This is where the platform expertise started. Dexter was the AEM 6.5-based compo
 
 ## What I built
 
-**Spectrum integration** — componentizing adobe.com's UI to align with Adobe's unified Spectrum design system across a large, established codebase — the kind of migration that has to be done right because every team building on the platform inherits whatever you ship.
+**Flex Box grid system** — partnered with Dexter's engineering manager, one of the platform's original architects, to build a CSS-based grid editor that let the CMS assemble custom page layouts without hand-written markup, keeping every layout lightweight and consistent across the platform.
 
-**Geo routing** — rules-based routing logic that served the right regional content and experiences to visitors based on geography, across a platform operating at global scale.
+**Experience Fragment pattern templates (XF-Unwrap)** — took Experience Fragments and turned them into reusable pattern templates that any team could drop onto a page across adobe.com, simplifying Global Web Production's process down to swapping in content instead of rebuilding layout from scratch. Page creation time dropped from 2–3 hours to about 30 minutes — roughly an 80% cut — and the lighter-weight patterns helped lift performance scores.
 
 **Accessibility** — platform-level accessibility fixes across components that had to be right for every team building on the system, not just individual pages.
 
-**Component engineering** — carousel improvements, flex container layout, and Experience Fragment (XF) extensibility tooling that gave content teams more authoring flexibility without requiring engineering changes for every new use case.
+**Component engineering** — componentizing adobe.com's UI to align with Adobe's unified Spectrum design system across a large, established codebase, plus carousel improvements and flex container layout work that gave content teams more authoring flexibility.
 
 ## What I learned
 

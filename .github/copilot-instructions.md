@@ -81,9 +81,50 @@ Adding a new project:
 
 Order values: Milo=1, Site Redesign=1.5, Forge=1.7, Otto=3, Dexter=2 (desktopOrder=2), TechComm=4 (desktopOrder=1).
 
-## Content framing
+## Content framing & writing style
 
 Core framing across all project copy: *Senior/Staff-level engineer functioning as the technical lead for several layers of a major platform redesign — high-volume production engineering, tool ownership, and cross-org technical liaison.*
+
+This framing isn't aspirational marketing — it came from an evidence-based
+analysis (Claude reviewed Ryan's Otto task history, Slack, email, Teams
+calendar, and GitHub activity and reported back what the data actually
+showed). The evidence behind it, for reference when writing new copy or
+extending existing project pages:
+
+1. **De facto tech lead for one specific slice, not a generalist
+   contributor.** ~85% of tracked work (94/149 Otto tasks + 34/44 PRs
+   tagged Site Redesign; another 21 tasks + 5 PRs tagged Forge) points at
+   one program, not spread thin across Milo generally.
+2. **Built and owns an internal tool, not just product code.**
+   `libs/c2/tools/page-animator/` (Forge) — a bookmarklet + Sidekick-launched
+   panel letting production/content people author scroll and hover
+   animations without filing an engineering ticket. Recurring "Forge
+   Standup" (2–3x/week) plus a separate "Forge AUS Standup" for the
+   Australia-hours team confirm a team actually depends on the tool and on
+   Ryan, not just a side contribution.
+3. **Pulled in as the expert, not assigned as the implementer.** Slack
+   loops are people bringing things *to* Ryan (accessibility issues flagged
+   for his opinion, design asking if something should route into his
+   queue). Meeting list is full of *Handoff to Eng* / *Handoff to Authors*
+   sessions bridging Design, Creator, and Global Web Production — Ryan is
+   the translation layer — plus intake/process-review meetings (shaping how
+   work flows in) and named seats on the Performance Tiger Team and
+   accessibility review sessions.
+
+Explicitly **not** engineering management — no 1:1s or headcount signal in
+the data — but clearly past "just write the code you're assigned."
+
+**Tone, derived from the shipped copy (see `milo.md` etc.):**
+- First-person, confident, understated — no résumé buzzword inflation.
+- Consistent structure per project: `## Overview` → `## What I do` (bolded
+  bullet-style sub-headers, one theme per bullet) → `## What I've learned`.
+- Long, clause-dense sentences that fold technical + organizational context
+  together, followed by a short, punchy closing sentence per section.
+- Impact framed matter-of-factly ("the value shows up in what doesn't go
+  wrong") rather than self-congratulatory.
+- Specificity over generality: named tools, named teams, named numbers
+  (PR counts, vulnerability counts, standup cadence) instead of vague
+  claims.
 
 Projects: Milo, Adobe.com Site Redesign, Forge, Otto, Dexter/AEM, Technical Communication — all rewritten through this lens (see `src/content/projects/*.md`).
 

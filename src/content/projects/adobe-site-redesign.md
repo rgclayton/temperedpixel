@@ -52,4 +52,4 @@ A redesign this large runs on horizontal decisions that don't belong to any sing
 
 ## Screenshots
 
-![Adobe.com homepage](/projects/adobe-site-redesign/cover/adobe-homepage.png)
+![Adobe.com homepage](/projects/adobe-site-redesign/adobe-homepage.png)
