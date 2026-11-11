@@ -3,26 +3,26 @@ title: Milo
 type: engineering
 featured: true
 placeholder: false
-summary: Code owner and primary U.S.-hours engineer on the shared platform powering millions of adobe.com visitors — the review gate across the full block library, a technical resource other teams route through, and the engineer bridging a distributed team across two continents.
+summary: Code owner and primary reviewer on the shared platform powering millions of adobe.com visitors — the review gate across the full block library, a technical resource other teams route through, and a key link across a globally distributed engineering team.
 year: "2021–present"
 role: Senior Front-End Engineer
 tags: [JavaScript, CSS, Franklin, AEM, Web Performance]
 github: https://github.com/adobecom/milo
 live: https://adobe.com
-order: 1
-size: large
+order: 2
+size: tall
 image: /projects/milo/cover/milo-cover.png
 ---
 
 ## Overview
 
-[AEM](https://www.aem.live/) is Adobe's own document-based web publishing platform, used by companies large and small to build and manage web properties. Milo is Adobe's custom implementation of AEM built specifically for adobe.com — extending the platform to meet the scale and complexity of supporting the entire Adobe.com marketing organization and the hundreds of teams creating pages under it. As a code owner on both `adobecom/milo` and the Forge deployment repo, and the primary Milo engineer during U.S. hours, I'm a daily review and merge gate for platform output and the first technical resource other teams reach for when they're working in the Milo codebase.
+[AEM](https://www.aem.live/) is Adobe's own document-based web publishing platform, used by companies large and small to build and manage web properties. Milo is Adobe's custom implementation of AEM built specifically for adobe.com — extending the platform to meet the scale and complexity of supporting the entire Adobe.com marketing organization and the hundreds of teams creating pages under it. As a code owner on both `adobecom/milo` and the Forge deployment repo, I'm a daily review and merge gate for platform output and the first technical resource other teams reach for when they're working in the Milo codebase.
 
 ## What I do
 
 **Code ownership** — no change merges to production without going through the code-owner review chain — across every block, component, and shared service in the library. That covers routine updates, large batched production pushes, and anything that needs to be held until external dependencies clear — including platform-level accessibility improvements that don't belong to any one page team but have to get done right.
 
-**U.S. timezone coverage** — the core engineering team is based in Eastern Europe. By the time the U.S. day starts, their overnight work is already queued for review. Being the consistent U.S.-side presence means the platform keeps moving around the clock rather than waiting 24 hours for a response.
+**Coverage across time zones** — with the core engineering team based in Eastern Europe, I pick up reviews and platform questions as the U.S. workday begins, helping work continue across regions.
 
 **The engineer other teams route through** — whether the question is how a block works, whether a proposed change fits the platform's conventions, or whether something is safe to ship at this scale.
 

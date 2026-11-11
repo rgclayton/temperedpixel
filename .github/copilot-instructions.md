@@ -72,14 +72,17 @@ Adding a new project:
 - All component styles are scoped by default in Astro (`:global()` needed for child elements not in the component template)
 - The `.prose` styles in `[slug].astro` use `:global()` wrappers for markdown-rendered content
 
-## Current project layout (desktop)
+## Current project layout (desktop, 3-column grid)
 
 ```
-[ Milo 2×2 ] [ Adobe.com Site Redesign 1×2 ] [ Forge 1×2 ] [ Otto 1×2 ]
-                                              [ TechComm  ] [ Dexter   ]
+[ Site Redesign 2×2       ] [ Milo 1×2 ]
+[ Site Redesign           ] [ Milo     ]
+[ Forge 1×2 ] [ AI Tooling 2×1        ]
+[ Forge     ] [ Dexter ] [ Otto 1×2  ]
+[ TechComm 2×1            ] [ Otto     ]
 ```
 
-Order values: Milo=1, Site Redesign=1.5, Forge=1.7, Otto=3, Dexter=2 (desktopOrder=2), TechComm=4 (desktopOrder=1).
+Order values: Site Redesign=1 (large), Milo=2 (tall), Forge=3 (tall), AI-Assisted Tooling=4 (wide), Dexter=5 (normal), Otto=6 (tall), Technical Communication=7 (wide). Keep the desktop grid filled when adding cards; total occupied cells should be a multiple of 3. Preserve this order across breakpoints unless intentionally changed.
 
 ## Content framing & writing style
 
@@ -126,7 +129,7 @@ the data — but clearly past "just write the code you're assigned."
   (PR counts, vulnerability counts, standup cadence) instead of vague
   claims.
 
-Projects: Milo, Adobe.com Site Redesign, Forge, Otto, Dexter/AEM, Technical Communication — all rewritten through this lens (see `src/content/projects/*.md`).
+Projects: Milo, Adobe.com Site Redesign, Forge, Otto, Dexter/AEM, Technical Communication, AI-Assisted Tooling — all written through this lens (see `src/content/projects/*.md`). Resume-aligned wording and claim boundaries: OneDrive KB `AI testing/temperedpixel-context/resume-positioning-handoff.md`.
 
 ## Studio nav — intentionally hidden
 
@@ -150,7 +153,7 @@ Correct DNS records at the registrar (GoDaddy):
 ## Remaining work
 
 **High priority**
-- Dexter/AEM cover image: not wired up yet. Drop file in `public/projects/dexter-aem/cover/` and add `image: /projects/dexter-aem/cover/<filename>.png` to `dexter-aem.md` frontmatter.
+- Placeholder covers: AI Tooling, Dexter/AEM, and Technical Communication reuse copies of the Forge, Site Redesign, and Milo covers (placed so matching backgrounds aren't adjacent on desktop). Replace with dedicated art when available.
 - Confirm HTTPS cert issued for temperedpixel.com and enable "Enforce HTTPS".
 
 **Medium priority**

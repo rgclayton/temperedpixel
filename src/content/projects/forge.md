@@ -8,9 +8,9 @@ year: "2026"
 role: Senior Front-End Engineer
 tags: [JavaScript, React, Tooling, DX, AEM Sidekick]
 github: https://github.com/adobecom/milo
-order: 1.7
+order: 3
 size: tall
-tabletSize: normal
+tabletSize: tall
 image: /projects/forge/cover/forge-cover.png
 ---
 
@@ -18,7 +18,7 @@ image: /projects/forge/cover/forge-cover.png
 
 Adobe.com's Site Redesign leaned heavily on scroll-driven and hover animation to sell the new visual language — but every one of those effects started as a request that had to land in an engineer's queue. I built Forge to close that gap: a set of panels launched from the AEM Sidekick that let the production and content team author that motion themselves — pick a section, tune it, ship it, without opening a ticket.
 
-<video src="https://pub-f6957e252622410a8cc6681d8e5dfdf5.r2.dev/forge-animate-panel-poc-trim.mp4" controls preload="metadata" playsinline></video>
+<video src="https://pub-f6957e252622410a8cc6681d8e5dfdf5.r2.dev/forge-animate-panel-poc-trim.mp4" poster="/projects/forge/forge-poster.jpg" controls preload="metadata" playsinline></video>
 
 ## What I built
 

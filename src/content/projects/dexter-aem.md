@@ -7,11 +7,10 @@ summary: Where I cut my teeth at Adobe — enterprise-scale component engineerin
 year: "2019–2021"
 role: Senior Front-End Engineer
 tags: [JavaScript, CSS, AEM, Spectrum, Java]
-order: 2
+order: 5
 size: normal
+image: /projects/dexter-aem/cover/dexter-cover.png
 tabletSize: normal
-desktopOrder: 2
-tabletOrder: 3
 ---
 
 ## Overview
@@ -22,7 +21,7 @@ This is where the platform expertise started. Dexter was the AEM 6.5-based compo
 
 **Flex Box grid system** — partnered with Dexter's engineering manager, one of the platform's original architects, to build a CSS-based grid editor that let the CMS assemble custom page layouts without hand-written markup, keeping every layout lightweight and consistent across the platform.
 
-**Experience Fragment pattern templates (XF-Unwrap)** — took Experience Fragments and turned them into reusable pattern templates that any team could drop onto a page across adobe.com, simplifying Global Web Production's process down to swapping in content instead of rebuilding layout from scratch. Page creation time dropped from 2–3 hours to about 30 minutes — roughly an 80% cut — and the lighter-weight patterns helped lift performance scores.
+**Experience Fragment pattern templates (XF-Unwrap)** — took Experience Fragments and turned them into reusable pattern templates that any team could drop onto a page across adobe.com, simplifying Global Web Production's process down to swapping in content instead of rebuilding layout from scratch. Page creation time dropped by roughly 75%, and the lighter-weight patterns helped lift performance scores.
 
 **Accessibility** — platform-level accessibility fixes across components that had to be right for every team building on the system, not just individual pages.
 

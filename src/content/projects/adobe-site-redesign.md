@@ -1,14 +1,14 @@
 ---
 title: Adobe.com Site Redesign
 type: engineering
-featured: false
+featured: true
 placeholder: false
 summary: Technical lead on Adobe.com's largest visual redesign — owning the platform-level work that lives between teams, translating design intent across engineering, authoring, and localization, and shipping the systems that every product page on the platform is built on.
 year: "2026"
 role: Senior Front-End Engineer
 tags: [JavaScript, CSS, Design Tokens, Performance, Accessibility, Technical Leadership]
-order: 1.5
-size: tall
+order: 1
+size: large
 image: /projects/adobe-site-redesign/cover/adobe-homepage.png
 ---
 
@@ -20,13 +20,13 @@ My role spanned the full pipeline — sitting with the design team to work throu
 
 ## Engineering
 
-**Rounded-corners system** — owned the border-radius engineering end-to-end across every surface of the redesign. The hard problems weren't the tokens themselves — they were the interactions: z-index conflicts with parallax scroll animations, double negative margins on adjacent sections, and per-breakpoint values that design had only specified at desktop, requiring repeated pushback to get a complete spec before a PR could be written.
+**Shared component systems** — owned foundational pieces of the redesign's component system end to end, from design tokens and responsive behavior to the interactions between shared components. The hard problems were rarely the tokens themselves; they were the edge cases where systems met, and the missing details that needed resolving with design before engineering could ship.
 
-**Performance** — identified and tracked LCP bottlenecks as a distinct engineering track from other performance work running in parallel. Investigated a critically low Lighthouse score on a product page caused by an unoptimized hero video, and served as the engineering lead for the homepage spacing token launch.
+**Performance** — tracked page-load bottlenecks as a distinct engineering effort, investigated performance regressions on high-traffic pages, and led engineering for a foundational design-token launch.
 
-**Accessibility** — owned multiple accessibility issues across the redesign: an informative hero video missing a required transcript, color-contrast failures in product page animation frames, heading-level hierarchy violations, and bento card text contrast over imagery. Proactively flagged that animated scroll behavior at high zoom levels would need to be disabled until a proper fix was in place, and organized a cross-team meeting on semantic heading structure in merch cards before it became a formal ticket.
+**Accessibility** — owned accessibility improvements across shared components, from media alternatives and color contrast to semantic structure and motion. Raised risks early and brought teams together to resolve patterns before they became formal issues.
 
-**Block component delivery** — shipped fixes and new variants across the full redesign component library: side-by-side body text over image cards, bento layout and token corrections, stroke removal across news and animated components, FAQ token updates, sticky CTA, short marquee variant, globe variant, and featured card with video modal and ambient video support.
+**Block component delivery** — shipped fixes and new variants across the redesign's component library, spanning layout, content, media, navigation, and calls to action.
 
 **Wave coordination** — co-led the development of a change-impact matrix that categorized every engineering change as display-only, authoring-required, or global-stylesheet — giving production and content teams a clear picture of what each wave release actually required of them before a rollout window opened.
 
@@ -48,7 +48,7 @@ My role spanned the full pipeline — sitting with the design team to work throu
 
 ## What I learned
 
-A redesign this large runs on horizontal decisions that don't belong to any single page team — the token system, the heading-hierarchy call, the LCP audit. Being useful meant stepping into that gap deliberately, and absorbing enough ambiguity that other people weren't stuck waiting on a decision.
+A redesign this large runs on horizontal decisions that don't belong to any single page team — shared systems, accessibility standards, and performance priorities. Being useful meant stepping into that gap deliberately, and absorbing enough ambiguity that other people weren't stuck waiting on a decision.
 
 ## Screenshots
 

@@ -8,10 +8,9 @@ year: "2026"
 role: Senior Front-End Engineer
 tags: [JavaScript, Vanilla JS, Personal Tooling, Automation]
 github: https://github.com/rgclayton/otto-app
-order: 3
+order: 6
 size: tall
 tabletSize: normal
-tabletOrder: 2
 image: /projects/otto/cover/otto-cover.png
 ---
 

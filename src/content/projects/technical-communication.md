@@ -5,12 +5,11 @@ featured: false
 placeholder: false
 summary: Writing, documentation, and live demos that translate complex platform engineering into something the broader organization can act on — the skill that makes the cross-team work possible.
 year: "2021–present"
-role: Technical Communicator & Community Lead
-tags: [Documentation, Education, AEM, Franklin]
-order: 4
-desktopOrder: 1
-tabletOrder: 1
-image: /projects/technical-communication/cover/tech-comms-cover.png
+role: Senior Front-End Engineer
+tags: [Documentation, Education, AEM, Franklin, AI-Assisted Tooling]
+order: 7
+size: wide
+image: /projects/technical-communication/cover/tech-comms-milo-cover.png
 ---
 
 ## Overview
@@ -20,6 +19,8 @@ Platform engineering only works if the people using the platform can actually us
 ## What I do
 
 **Documentation** — written guides and references for the authoring and Global Web Production community, covering new blocks, authoring workflows, and platform capabilities as they ship. Written for people who need to act on the information, not for people who already understand it.
+
+**AI-assisted documentation** — an [agent workflow](/work/ai-assisted-tooling) now drafts authoring guides from component code, then has a separate agent rebuild the examples from the written instructions alone to prove they work. Dozens of guides have gone through the workflow, which now produces several per day compared with roughly one per day by hand.
 
 **Live demos** — bi-weekly sessions that walk content authors through new platform features in real time, on real pages. The format keeps the feedback loop short: if something is confusing in a demo, it gets fixed before it becomes a support request.
 
