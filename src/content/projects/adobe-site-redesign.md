@@ -46,6 +46,10 @@ My role spanned the full pipeline — sitting with the design team to work throu
 - [Acrobat Studio](https://www.adobe.com/acrobat/acrobat-studio.html)
 - [Acrobat PDF & Document Essentials](https://www.adobe.com/acrobat/pdf-and-document-essentials.html)
 - [Acrobat Plans](https://www.adobe.com/acrobat/plans.html)
+- [Photoshop](https://www.adobe.com/products/photoshop.html)
+- [Premiere](https://www.adobe.com/products/premiere.html)
+- [Creative Cloud Pro (All Apps)](https://www.adobe.com/creativecloud/creativity-and-design.html)
+- [Creative Cloud Pro](https://www.adobe.com/creativecloud/pro.html)
 
 ## What I learned
 
