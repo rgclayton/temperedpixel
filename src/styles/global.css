@@ -12,7 +12,7 @@
 
   /* Text */
   --text:            #ffffff;
-  --text-muted:      rgba(255, 255, 255, 0.5);
+  --text-muted:      rgba(255, 255, 255, 0.75);
   --text-dim:        #555555;
   --text-placeholder: #2e2e3a;
 
@@ -40,7 +40,7 @@
   --bg-card-hover:       #f3f1f8;
   --bg-card-placeholder: #f0eef5;
   --text:            #111114;
-  --text-muted:      rgba(17, 17, 20, 0.55);
+  --text-muted:      rgba(17, 17, 20, 0.75);
   --text-dim:        #888888;
   --text-placeholder:#c0bcc8;
   --accent:     #7b3fe4;

@@ -10,7 +10,7 @@ tags: [JavaScript, CSS, Franklin, AEM, Web Performance]
 github: https://github.com/adobecom/milo
 live: https://adobe.com
 order: 2
-size: tall
+size: normal
 image: /projects/milo/cover/milo-cover.png
 ---
 

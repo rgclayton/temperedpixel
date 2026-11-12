@@ -10,7 +10,7 @@ tags: [JavaScript, React, Tooling, DX, AEM Sidekick]
 github: https://github.com/adobecom/milo
 order: 3
 size: tall
-tabletSize: tall
+tabletSize: normal
 image: /projects/forge/cover/forge-cover.png
 ---
 

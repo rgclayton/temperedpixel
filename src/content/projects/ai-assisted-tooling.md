@@ -9,6 +9,7 @@ role: Senior Front-End Engineer
 tags: [AI Agents, Automation, Documentation, Accessibility, Developer Tooling]
 order: 4
 size: wide
+tabletSize: normal
 image: /projects/ai-assisted-tooling/cover/ai-tooling-cover.png
 ---
 

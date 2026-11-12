@@ -8,7 +8,8 @@ year: "2026"
 role: Senior Front-End Engineer
 tags: [JavaScript, CSS, Design Tokens, Performance, Accessibility, Technical Leadership]
 order: 1
-size: large
+size: wide
+tabletSize: normal
 image: /projects/adobe-site-redesign/cover/adobe-homepage.png
 ---
 

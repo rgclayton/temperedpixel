@@ -75,14 +75,15 @@ Adding a new project:
 ## Current project layout (desktop, 3-column grid)
 
 ```
-[ Site Redesign 2×2       ] [ Milo 1×2 ]
-[ Site Redesign           ] [ Milo     ]
+[ Site Redesign 2×1       ] [ Milo     ]
 [ Forge 1×2 ] [ AI Tooling 2×1        ]
 [ Forge     ] [ Dexter ] [ Otto 1×2  ]
 [ TechComm 2×1            ] [ Otto     ]
 ```
 
-Order values: Site Redesign=1 (large), Milo=2 (tall), Forge=3 (tall), AI-Assisted Tooling=4 (wide), Dexter=5 (normal), Otto=6 (tall), Technical Communication=7 (wide). Keep the desktop grid filled when adding cards; total occupied cells should be a multiple of 3. Preserve this order across breakpoints unless intentionally changed.
+Order values: Site Redesign=1 (wide), Milo=2 (normal), Forge=3 (tall; tabletSize normal so tablet has no gap), AI-Assisted Tooling=4 (wide), Dexter=5 (normal), Otto=6 (tall), Technical Communication=7 (wide). Top row is content-height (no 2-row spans) so it sizes to the card text. Keep the desktop grid filled when adding cards; total occupied cells should be a multiple of 3. Preserve this order across breakpoints unless intentionally changed.
+
+Tablet uses two columns: Adobe.com, Milo, Forge, AI-Assisted Tooling, Dexter, and Otto are normal tiles; Technical Communication spans both columns at the end.
 
 ## Content framing & writing style
 
